@@ -3,21 +3,21 @@
 pretraining wav2vec docker for sagemaker.
 This docker is written with the assumption that it will be run by aws sagemaker.
 
-# Required resources
+## Required resources
 
 Unlabeled data (audios without transcriptions) of your own language is required.
 A good amount of unlabeled audios (e.g. 500 hours) will significantly reduce the amount of labeled data needed, and also boost up the model performance. Youtube/Podcast is a great place to collect the data for your own language. Prepare an s3 bucket with the audio data in it.
 
-# Install instruction
+## Install instruction
 
 You can check `pretrain.ipynb`.
 
-## Wandb setup
+### Wandb setup
 
 1. Set WANDB_API_KEY in line 72 of `Dockerfile`.
 2. And set wandb project name of `wandb_project` in `wav2vec2_base_librispeech.yaml`
 
-## Upload docker to your ECS
+### Upload docker to your ECS
 
 Before upload docker, you have to setup aws cli.
 Please check here: https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html
@@ -32,7 +32,7 @@ The first parameter of the shell script is the docker image name.
 sh build_and_push.sh wav2vec2-pretrain
 ```
 
-## Define IAM role
+### Define IAM role
 
 ```python
 from sagemaker import get_execution_role
@@ -40,7 +40,7 @@ from sagemaker import get_execution_role
 role = get_execution_role()
 ```
 
-## Dataset
+### Dataset
 
 For example, we will have an s3 bucket with the following structure. There is no specification for naming the folders or wav files.
 
@@ -58,7 +58,7 @@ Define the path of the s3 bucket you prepared.
 data_location = 's3://{backetname}/{audio_foldername}'
 ```
 
-## Create the session
+### Create the session
 
 ```python
 import sagemaker as sage
@@ -68,7 +68,7 @@ sess = sage.Session()
 sess.default_bucket()
 ```
 
-## Create an estimator and fit the model
+### Create an estimator and fit the model
 
 ```python
 import boto3
