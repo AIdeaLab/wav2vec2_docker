@@ -124,6 +124,8 @@ python convert_wav2vec2_original_pytorch_checkpoint_to_pytorch.py --pytorch_dump
 Paper: wav2vec 2.0: A Framework for Self-Supervised Learning of Speech Representations: https://arxiv.org/abs/2006.11477 \
 Source code: https://github.com/pytorch/fairseq/blob/master/examples/wav2vec/README.md
 
+self-supervised-speech-recognition: https://github.com/mailong25/self-supervised-speech-recognition
+
 ## License
 
 MIT
