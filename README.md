@@ -10,6 +10,8 @@ A good amount of unlabeled audios (e.g. 500 hours) will significantly reduce the
 
 # Install instruction
 
+You can check `pretrain.ipynb`.
+
 ## Wandb setup
 
 1. Set WANDB_API_KEY in line 72 of `Dockerfile`.
@@ -92,6 +94,29 @@ Run train!
 
 ```python
 model.fit(data_location)
+```
+
+## How to convert huggingface model
+
+You can check `convert_huggingface_model.ipynb`.
+
+Clone huggingface transformers.
+
+```shell
+git clone https://github.com/huggingface/transformers.git
+cd transformers/src/transformers/models/wav2vec2/convert_wav2vec2_original_pytorch_checkpoint_to_pytorch.py
+```
+
+Install datsasets of huggingface.
+
+```shell
+pip install datasets -U
+```
+
+Run converting script.
+
+```shell
+python convert_wav2vec2_original_pytorch_checkpoint_to_pytorch.py --pytorch_dump_folder_path ./output --checkpoint_path ./finetuning/wav2vec_small_960h.pt --dict_path ./dict
 ```
 
 ## Reference:
