@@ -72,6 +72,9 @@ def main():
 
     for i in tqdm(range(0, len(paths))):
         audio_info = soundfile.info(paths[i])
+        # Skip audio of over 30s
+        if audio_info.duration > 30:
+            continue
         frames = audio_info.frames
         total_duration += audio_info.duration
         paths[i] = paths[i] + '\t' + str(frames)
